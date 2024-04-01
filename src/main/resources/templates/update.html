@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{|/update/${boardDto.bno}|}" method="post" name="updateForm">
+	<input type="hidden" name="bno" th:value="${boardDto.bno}">
+    writer: <input type="text" name="writer" th:value="${boardDto.writer}" readonly><br>
+    title: <input type="text" name="title" th:value="${boardDto.title}"><br>
+    contents: <textarea name="content" cols="30" rows="10" th:text="${boardDto.content}"></textarea><br>
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>

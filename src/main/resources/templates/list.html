@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+        table, tr, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+	<h1>게시글 목록</h1>
+	<table>
+    <tr>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성날짜</th>
+    </tr>
+    <tr th:each="board: ${boardList}">
+        <td><a th:text="${board.title}" th:href="@{|/${board.bno}|}"></a></td>
+        <td th:text="${board.writer}"></td>
+        <td th:text="${#temporals.format(board.insert_time, 'yyyy-MM-dd')}"></td>
+    </tr>
+	</table>
+	<button type="button" onclick="location.href='/'">home</button>
+</body>
+</html>

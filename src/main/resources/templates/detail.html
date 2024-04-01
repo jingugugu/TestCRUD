@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+        table, tr, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+	<h1>게시글 상세</h1>
+	<table>
+	    <tr>
+	        <th>제목</th>
+	        <th>내용</th>
+	        <th>작성자</th>
+	        <th>작성날짜</th>
+	    </tr>
+	    <tr th:each="board: ${boardDto}">
+	        <td th:text="${board.title}"></td>
+	        <td th:text="${board.content}"></td>
+	        <td th:text="${board.writer}"></td>
+	        <td th:text="${#temporals.format(board.insert_time, 'yyyy-MM-dd')}"></td>
+	    </tr>
+	</table>
+	<button onclick="updateReq()">수정</button>
+	<button onclick="deleteReq()">삭제</button>
+	<button onclick="location.href='/list'">글목록</button>
+</body>
+<script th:inline="javascript">
+    const updateReq = () => {
+        location.href = `/update/[[${boardDto.bno}]]`;
+    }
+    
+    const deleteReq = () => {
+        location.href = `/delete/[[${boardDto.bno}]]`;
+    }
+</script>
+</html>
